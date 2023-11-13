@@ -39,20 +39,20 @@ class _HomeScreenState extends State<HomeScreen> {
       if (response.statusCode == 200) {
         final responseData = json.decode(response.body);
         var imageUrl = responseData['data'][0]['url'];
-        print('Image URL: $imageUrl');
+        debugPrint('Image URL: $imageUrl');
 
         setState(() {
           imageUrl = imageUrl;
           isLoading = false;
         });
       } else {
-        print('Failed to generate image: ${response.body}');
+        debugPrint('Failed to generate image: ${response.body}');
         setState(() {
           isLoading = false;
         });
       }
     } catch (e) {
-      print('Error: $e');
+      debugPrint('Error: $e');
       setState(() {
         isLoading = false;
       });
@@ -68,6 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Stack(
           children: [
             Container(
+              color: Colors.transparent,
               child: Column(
                 children: [
                   const SizedBox(
@@ -101,6 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
+            // ignore: avoid_unnecessary_containers
             Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
